@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,7 +13,7 @@ namespace ConsoleApp2
 {
     internal class Program
     {
-        static void Main(string[] args)
+       /*static void Main(string[] args)
         {
             Console.Write("Input the string: ");
             string stg = Console.ReadLine(); ;
@@ -20,16 +22,16 @@ namespace ConsoleApp2
 
             //ascendingOrder(stg);
 
-            //subtracting(stg); 
+            subtracting(stg); 
 
             //Console.WriteLine("After Convertion: "+ upperLowerConvert(stg));
 
             //isAlphOrNot(stg);
 
-            isEndWithDot(stg); 
+            //isEndWithDot(stg); 
             Console.Read();
            
-        }
+        }*/
         /* Write a program in C# Sharp to count the number of alphabets, digits and special characters in a string.
  Test Data :
  Input the string : Welcome to Showit1.com
@@ -102,21 +104,32 @@ Expected Output :
 
 The substring retrieve from the string is :  is a*/
 
-        public static void subtracting(string a)
+        public static void subtracting(string str)
         {
 
-            int n; int e;
-            Console.WriteLine("Input the starting position: ");
-             n = Convert.ToInt32(Console.ReadLine());
+            
+            char[] arr1;
+            int pos, l, ln, c = 0;
 
-            /*Console.WriteLine("Input the lenth of subtracting: ");
-            e = Convert.ToInt32(Console.ReadLine());*/
+            Console.Write("\n\nExtract a substring from a given string:\n");
+            Console.Write("--------------------------------------------\n");
+          
+            ln = str.Length;
+            arr1 = str.ToCharArray(0, ln);
 
+            Console.Write("Input the position to start extraction :");
+            pos = Convert.ToInt32(Console.ReadLine());
 
-            for (int i = n; i <= a.Length; i++)
+            Console.Write("Input the length of substring :");
+            l = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("The substring retrieve from the string is : ");
+            while (c < l)
             {
-                
+                Console.Write(arr1[pos + c - 1]);
+                c++;
             }
+            Console.Write("\n\n");
         }
 
        /* Write a C# Sharp program to read a sentence and replace lowercase characters with uppercase and vice-versa.
@@ -219,8 +232,36 @@ Expected Output :
                  Console.Write("False");
             }
         }
+    
+       public static  class File
+        {
+            static void Main(string[] args) {
+                FileStream fileStream = new FileStream("F:\\Sample Text\\one.txt", FileMode.OpenOrCreate);//Write
+
+                byte[] bytes = Encoding.ASCII.GetBytes("Hello !! How are you");
+
+                fileStream.Write(bytes, 0, bytes.Length);
+
+                fileStream.Close();
+                fileStream.Dispose();
+
+
+
+                StreamReader reader = new StreamReader("F:\\Sample Text\\one.txt");//Read 
+
+                string size; 
+
+                while ((size = reader.ReadLine()) != null)
+                {
+                    Console.WriteLine(size);
+                    
+                }
+                Console.ReadKey();
+              }
+        }
 
     }
+    
 
 }
 
